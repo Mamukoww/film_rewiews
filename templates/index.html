@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Главная</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <header>
@@ -37,61 +37,19 @@
 </header>
 <main class="container">
     <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
-        <div class="col">
-            <div class="card m-3 p-3" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Звёздные войны. Эпизод IV: Новая надежда</h5>
-                    <p class="card-text">Дата выпуска: 25 мая 1977 года</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
+        {% for film_id, film in films.items() %}
+            <div class="col">
+                <div class="card m-3 p-3" style="width: 18rem;">
+                    <img src="{{ film.image }}"
+                         class="card-img-top" alt="{{ film.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ film.name }}</h5>
+                        <p class="card-text">{{ film.release_date }}</p>
+                        <a href="#" class="btn btn-success">Подробнее</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card m-3 p-3" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Звёздные войны. Эпизод IV: Новая надежда</h5>
-                    <p class="card-text">Дата выпуска: 25 мая 1977 года</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-3 p-3" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Звёздные войны. Эпизод IV: Новая надежда</h5>
-                    <p class="card-text">Дата выпуска: 25 мая 1977 года</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-3 p-3" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Звёздные войны. Эпизод IV: Новая надежда</h5>
-                    <p class="card-text">Дата выпуска: 25 мая 1977 года</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-3 p-3" style="width: 18rem;">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/8/87/StarWarsMoviePoster1977.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Звёздные войны. Эпизод IV: Новая надежда</h5>
-                    <p class="card-text">Дата выпуска: 25 мая 1977 года</p>
-                    <a href="#" class="btn btn-success">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </main>
 
