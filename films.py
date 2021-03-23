@@ -15,3 +15,14 @@ films = {
             "image": "https://upload.wikimedia.org/wikipedia/ru/thumb/c/c4/WALL-E_poster.png/266px-WALL-E_poster.png"
         }
 }
+
+
+
+def find_by_name(name: str):
+    result = {}
+
+    for index, film in films.items():
+        if name.lower() in film["name"].lower():
+            result[index] = film
+
+    return result
