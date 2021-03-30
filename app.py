@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, abort
 from films import films, find_by_name
+from flask_sqlalchemy import SQLAlchemy
+from models import db, User
+
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
+db.init_app(app)
+
 
 
 @app.route('/')
