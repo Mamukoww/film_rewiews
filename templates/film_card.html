@@ -1,9 +1,14 @@
-                    <div class="card m-3 p-3" style="width: 18rem;">
-                        <img src="{{ film.image }}"
-                             class="card-img-top" alt="{{ film.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ film.name }}</h5>
-                            <p class="card-text">{{ film.release_date }}</p>
-                            <a href="{{ url_for("get_film", film_id=film_id) }}" class="btn btn-success">Подробнее</a>
-                        </div>
-                    </div>
+<div class="card m-3 p-3" style="width: 18rem;">
+    <img src="{{ film.poster }}"
+         class="card-img-top" alt="{{ film.name }}">
+    <div class="card-body">
+        <h5 class="card-title">{{ film.name }}</h5>
+        <p class="card-text">
+            Дата выхода: {{ film.release_date }}
+            {% if film.new %}
+                <span class="text-dark">(Новинка)</span>
+            {% endif %}
+        </p>
+        <a href="{{ url_for("get_film", film_id=film.id) }}" class="btn btn-success">Подробнее</a>
+    </div>
+</div>
