@@ -24,20 +24,22 @@
     </div>
     <form class="m-3 p-3">
         <hr>
-        <div class="row align-items-center">
-            <div class="col-auto">
-                <h1 class="fw-bold text-success">5</h1>
+        {% for review in film.reviews %}
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <h1 class="fw-bold text-success">{{ review.rating }}</h1>
+                </div>
+                <div class="col">
+                    <p class="fw-bold">{{ review.author.last_name }} {{ review.author.first_name }}</p>
+                    <p>{{ review.body }}</p>
+                </div>
             </div>
-            <div class="col">
-                <p class="fw-bold">Петров Иван</p>
-                <p>ННнгпннгирругрщугк каугшрщгшкгйрзщгрц акацуйшщарцгукартцуй акшруйгатрйук аукшйрцогкйцз4ашо5екпз йр4арйракывг890фыо8фуц9</p>
+            <hr>
+            <div class="mb-3">
+                <label for="Comment" class="form-label fw-bold">Комментарий</label>
+                <textarea class="form-control" id="Comment" rows="3"></textarea>
             </div>
-        </div>
-        <hr>
-        <div class="mb-3">
-            <label for="Comment" class="form-label fw-bold">Комментарий</label>
-            <textarea class="form-control" id="Comment" rows="3"></textarea>
-        </div>
+        {% endfor %}
         <div class="mb-3">
             <p class="fw-bold">
                 Оценка
