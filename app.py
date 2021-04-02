@@ -17,7 +17,7 @@ def homepage():
 
 @app.route("/films/<int:film_id>")
 def get_film(film_id):
-    film = Film.query.filter_by(id=film_id).one()
+    film = Film.query.filter_by(id=film_id).first_or_404()
     return render_template("film.html", film=film)
 
 
