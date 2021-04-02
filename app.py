@@ -11,14 +11,14 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def homepage():
-    return render_template('index.html', title="FilmReviews", films=films)
+    filmss = Film.query.all()
+    return render_template('index.html', title="FilmReviews", films=filmss)
 
 
 @app.route("/films/<int:film_id>")
 def get_film(film_id):
-    if film_id not in films:
-        abort(404)
-    return render_template("film.html", film=films[film_id])
+    film = Film.query.filter_by(id=film_id).one()
+    return render_template("film.html", film=film)
 
 
 @app.route("/search")
