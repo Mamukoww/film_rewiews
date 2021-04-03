@@ -1,4 +1,4 @@
-from forms import FilmForm, LoginForm
+from forms import FilmForm, LoginForm, RegisterForm
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, abort
 from models import db, User, Film, Review
@@ -22,6 +22,13 @@ def homepage():
 def login():
     form = LoginForm()
     return render_template('login.html', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    return render_template('register.html', form=form)
+
 
 @app.route('/films')
 def all_films():
