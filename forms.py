@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateTimeField, BooleanField, SubmitField
+from wtforms import StringField, DateTimeField, BooleanField, SubmitField, RadioField
 from wtforms.validators import Email, DataRequired, EqualTo
 from wtforms.widgets import TextArea, PasswordInput
 
@@ -26,3 +26,8 @@ class RegisterForm(FlaskForm):
     password = StringField(label='Пароль', widget=PasswordInput(), validators=[DataRequired()])
     confirmation = StringField(label='Подтверждение пароля', widget=PasswordInput(),
                                validators=[DataRequired(), EqualTo('password')])
+
+
+class ReviewForm(FlaskForm):
+    rating = RadioField(label='Оценка', choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
+    body = StringField(label='Комментарий', widget=TextArea())

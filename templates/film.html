@@ -37,39 +37,20 @@
             <hr>
         {% endfor %}
         <div class="mb-3">
-            <label for="Comment" class="form-label fw-bold">Комментарий</label>
-            <textarea class="form-control" id="Comment" rows="3"></textarea>
+            <label for="Comment" class="form-label fw-bold">{{ form.body.label }}</label>
+            {{ form.body(class_='form-control') }}
         </div>
         <div class="mb-3">
             <p class="fw-bold">
                 Оценка
             </p>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input btn-success" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                       value="option1">
-                <label class="form-check-label" for="inlineRadio1">1</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input btn-success" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                       value="option2">
-                <label class="form-check-label" for="inlineRadio2">2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input btn-success" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                       value="option3">
-                <label class="form-check-label" for="inlineRadio3">3</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input btn-success" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                       value="option4">
-                <label class="form-check-label" for="inlineRadio4">4</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input btn-success" type="radio" name="inlineRadioOptions" id="inlineRadio5"
-                       value="option5">
-                <label class="form-check-label" for="inlineRadio5">5</label>
-            </div>
+            {% for mark in form.rating %}
+                <div class="form-check form-check-inline">
+                    {{ mark(class_='form-check-input') }}
+                    <label class="form-check-label" for="inlineRadio1">{{ mark.label }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Отправить</button>
         </div>
-        <button type="submit" class="btn btn-success">Отправить</button>
     </form>
 {% endblock %}

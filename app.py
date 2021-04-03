@@ -1,4 +1,4 @@
-from forms import FilmForm, LoginForm, RegisterForm
+from forms import FilmForm, LoginForm, RegisterForm, ReviewForm
 from flask_bootstrap import Bootstrap
 from models import db, User, Film, Review
 from flask import Flask, render_template, request, abort, redirect, url_for
@@ -74,7 +74,8 @@ def all_films():
 @app.route("/films/<int:film_id>")
 def get_film(film_id):
     film = Film.query.filter_by(id=film_id).first_or_404()
-    return render_template("film.html", film=film)
+    review_form = ReviewForm()
+    return render_template("film.html", film=film, form=review_form)
 
 
 @app.route("/search")
