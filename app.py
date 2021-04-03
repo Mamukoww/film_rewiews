@@ -4,7 +4,7 @@ from models import db, User, Film, Review
 from flask import Flask, render_template, request, abort, redirect, url_for
 from flask_migrate import Migrate
 import datetime
-from flask_login import login_user, logout_user, LoginManager, login_required
+from flask_login import login_user, logout_user, LoginManager, login_required, current_user
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
@@ -76,6 +76,20 @@ def get_film(film_id):
     film = Film.query.filter_by(id=film_id).first_or_404()
     review_form = ReviewForm()
     return render_template("film.html", film=film, form=review_form)
+
+
+@app.route('/games/<int:film_id>/reviews', methods=['POST'])
+def create_review(film_id):
+    review_form = ReviewForm()
+    if review_form.validate():
+        rating = review_form.rating.data
+        body = review_form.body.data
+        user_id = current_user.id
+        review = Review(rating=rating, body=body, film_id=film_id, user_id=user_id)
+        db.session.add(review)
+        db.session.commit()
+        return redirect(url_for('get_film', film_id=film_id))
+    return redirect(url_for('get_film', film_id=film_id))
 
 
 @app.route("/search")

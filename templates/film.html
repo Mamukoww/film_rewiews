@@ -22,8 +22,10 @@
             </div>
         </div>
     </div>
-    <form class="m-3 p-3">
+    <form class="m-3 p-3" action="{{ url_for('create_review', film_id=film.id) }}" method="POST">
+        {{ form.csrf_token }}
         <hr>
+        <h3 class="mb-3 text-center">Отзывы</h3>
         {% for review in film.reviews %}
             <div class="row align-items-center">
                 <div class="col-auto">
@@ -36,6 +38,7 @@
             </div>
             <hr>
         {% endfor %}
+        <h3 class="mb-3 text-center">Оцените фильм</h3>
         <div class="mb-3">
             <label for="Comment" class="form-label fw-bold">{{ form.body.label }}</label>
             {{ form.body(class_='form-control') }}

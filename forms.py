@@ -29,5 +29,5 @@ class RegisterForm(FlaskForm):
 
 
 class ReviewForm(FlaskForm):
-    rating = RadioField(label='Оценка', choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
-    body = StringField(label='Комментарий', widget=TextArea())
+    rating = RadioField(label='Оценка', choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], validators=[DataRequired()])
+    body = StringField(label='Комментарий', widget=TextArea(), validators=[DataRequired()])
