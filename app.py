@@ -1,17 +1,13 @@
-from forms import FilmForm
+from forms import FilmForm, LoginForm
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, abort
-from films import find_by_name
 from models import db, User, Film, Review
 from flask_migrate import Migrate
 import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
-app.config.update(dict(
-    SECRET_KEY="aaa",
-    WTF_CSRF_SECRET_KEY="aaaaa"
-))
+app.secret_key = 'dSalGiK8IC9~fxz'
 db.init_app(app)
 migrate = Migrate(app, db)
 Bootstrap(app)
@@ -21,6 +17,11 @@ Bootstrap(app)
 def homepage():
     return render_template('index.html', title="FilmReviews")
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
 @app.route('/films')
 def all_films():
