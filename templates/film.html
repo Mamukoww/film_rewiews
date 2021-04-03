@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-7 col-lg-9 p-3">
                 <h3>
-                    {{ film.name }}
+                    {{ film.title }}
                 </h3>
                 <p>
                     Описание: {{ film.desc }}
@@ -35,11 +35,11 @@
                 </div>
             </div>
             <hr>
-            <div class="mb-3">
-                <label for="Comment" class="form-label fw-bold">Комментарий</label>
-                <textarea class="form-control" id="Comment" rows="3"></textarea>
-            </div>
         {% endfor %}
+        <div class="mb-3">
+            <label for="Comment" class="form-label fw-bold">Комментарий</label>
+            <textarea class="form-control" id="Comment" rows="3"></textarea>
+        </div>
         <div class="mb-3">
             <p class="fw-bold">
                 Оценка

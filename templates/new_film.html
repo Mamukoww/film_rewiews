@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    Добавление игры
+{% endblock %} title %}
+
+{% block header %}
+    Добавление игры
+{% endblock %}
+
+{% block content %}
+    <form class="container p-3 m-3 " action="{{ url_for('create_film') }}" method="POST">
+        <h1 class="text-center">Добавление нового фильма</h1>
+        {{ wtf.quick_form(form, button_map={'submit_button': 'success'}) }}
+    </form>
+
+{% endblock %}
