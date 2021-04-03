@@ -4,7 +4,7 @@ from models import db, User, Film, Review
 from flask import Flask, render_template, request, abort, redirect, url_for
 from flask_migrate import Migrate
 import datetime
-from flask_login import login_user, logout_user, LoginManager
+from flask_login import login_user, logout_user, LoginManager, login_required
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite'
@@ -27,7 +27,16 @@ def homepage():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    login_form = LoginForm()
+    form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        remember_me = form.remember_me.data
+        user = User.query.filter_by(email=email).first()
+        if not user or not user.check_password(password):
+            abort(401)
+        login_user(user, remember=remember_me)
+        return redirect(url_for('homepage'))
     return render_template('login.html', form=login_form)
 
 
@@ -76,6 +85,7 @@ def search():
 
 
 @app.route('/films/new', methods=['GET', 'POST'])
+@login_required
 def create_film():
     film_form = FilmForm()
     if request.method == 'POST' and film_form.validate():
